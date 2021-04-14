@@ -24,3 +24,4 @@ yarn-error.log*
 
 # directories
 backend/data_storage
+backend/__pycache__
