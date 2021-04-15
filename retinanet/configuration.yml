@@ -1,0 +1,14 @@
+train:
+  image_dir: "../data/train"
+  annotation: "../data/train.json"
+  model: "resnet101"
+  batch_size: 4
+  epochs: 5
+
+validation:
+  image_dir: "../data/test"
+  annotation: "../data/test.json"
+  batch_size: 1
+
+result:
+  result_dir: "../data/result"
