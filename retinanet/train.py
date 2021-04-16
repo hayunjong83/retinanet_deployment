@@ -102,7 +102,7 @@ def main():
         train_classification_loss /= num_train_batch
         train_regression_loss /= num_train_batch
         print('Train Epoch {}/{} : classification loss: {:1.5f}, regression loss: {:1.5f}'.format(
-            epoch + 1, num_epochs + 1, train_classification_loss, train_regression_loss
+            epoch + 1, num_epochs, train_classification_loss, train_regression_loss
         ))
 
         with torch.no_grad():
@@ -128,7 +128,7 @@ def main():
             val_regression_loss /= num_val_batch
             val_loss = val_classification_loss + val_regression_loss
             print('Validation Epoch {}/{} : classification loss: {:1.5f}, regression loss: {:1.5f}'.format(
-                epoch + 1, num_epochs + 1, val_classification_loss, val_regression_loss
+                epoch + 1, num_epochs, val_classification_loss, val_regression_loss
             ))
         
         scheduler.step(np.mean(epoch_loss))
