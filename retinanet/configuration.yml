@@ -8,7 +8,7 @@ train:
 validation:
   image_dir: "../data/test"
   annotation: "../data/test.json"
-  batch_size: 1
+  batch_size: 4
 
 result:
   result_dir: "../data/result"

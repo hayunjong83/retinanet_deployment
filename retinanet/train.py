@@ -106,19 +106,19 @@ def main():
         ))
 
         with torch.no_grad():
-            model_ft.eval()
             val_classification_loss = 0.0
             val_regression_loss = 0.0
-
+            print(device)
             for i, sample in enumerate(tqdm(val_dataloader)):
+                
                 classification_loss, regression_loss = model_ft(
-                    sample['img'].to(device).float(), sample['annot'].to(device))
+                    [sample['img'].to(device).float(), sample['annot'].to(device)])
                 
                 classification_loss = classification_loss.mean()
                 regression_loss = regression_loss.mean()
-                val_loss = classification_loss + val_loss
+                val_loss = classification_loss + regression_loss
 
-                val_classfication_loss += classification_loss
+                val_classification_loss += classification_loss
                 val_regression_loss += regression_loss
 
                 del classification_loss
