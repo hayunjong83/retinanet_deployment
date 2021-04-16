@@ -26,3 +26,6 @@ yarn-error.log*
 backend/data_storage
 backend/__pycache__
 data/
+
+# files
+retinanet/*.pth
