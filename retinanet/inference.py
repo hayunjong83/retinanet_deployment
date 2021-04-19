@@ -61,7 +61,7 @@ def draw_caption(image, box, caption):
     cv2.putText(image, caption, (b[0], b[1] - 10), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 2)
     cv2.putText(image, caption, (b[0], b[1] - 10), cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
 
-def inference(image, model, device, threshold=0.05):
+def inference(image, model, device, threshold, categories):
     unnormalizer = UnNormalizer()
     model.eval()
     
@@ -81,7 +81,7 @@ def inference(image, model, device, threshold=0.05):
 
         image = np.transpose(image, (1,2,0))
         image = cv2.cvtColor(image.astype(np.uint8), cv2.COLOR_BGR2RGB)
-
+        
         for i in range(idxs[0].shape[0]):
             score = scores.cpu().numpy()[i]
             bbox = boxes[idxs[0][i], :]
@@ -89,7 +89,8 @@ def inference(image, model, device, threshold=0.05):
             y1 = int(bbox[1])
             x2 = int(bbox[2])
             y2 = int(bbox[3])
-            caption = "pred:({:.2f})".format(score)
+            #caption = "pred:({:.2f})".format(score)
+            caption = "{}".format(categories[labels[i]]["name"])
             draw_caption(image, (x1, y1, x2, y2), caption)
             cv2.rectangle(image, (x1, y1), (x2, y2), color=(0, 0, 255), thickness=2)
         return image
@@ -136,7 +137,7 @@ def main():
     model_ft.freeze_bn()
 
     img_tensor = preprocesss(img)
-    result = inference(img_tensor, model_ft, device, threshold=0.01)
+    result = inference(img_tensor, model_ft, device, 0.05, categories)
     result_path = os.path.join(cfg['result']['result_dir'], "result.jpg")
     cv2.imwrite(result_path, result)
 
