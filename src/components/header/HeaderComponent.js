@@ -63,7 +63,7 @@ function HeaderComponent(props) {
           <IconBellNew />
         </div>
         <div className={css(styles.separator)}></div>
-        <Row vertical="center">
+        {/* <Row vertical="center">
           <span className={css(styles.name, styles.cursorPointer)}>
             Germán Llorente
           </span>
@@ -72,7 +72,7 @@ function HeaderComponent(props) {
             alt="avatar"
             className={css(styles.avatar, styles.cursorPointer)}
           />
-        </Row>
+        </Row> */}
       </Row>
     </Row>
   );
