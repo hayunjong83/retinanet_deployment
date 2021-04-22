@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     lineHeight: "20px",
     textAlign: "right",
     letterSpacing: 0.2,
+    "@media (max-width: 768px)": { display: "none" },
   },
   separator: {
     borderLeft: "1px solid #DFE0EB",
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
     marginRight: 32,
     height: 32,
     width: 2,
+    "@media (max-width: 768px)": { marginLeft: 12, marginRight: 12 },
   },
   title: {
     fontFamily: "Muli",
@@ -42,6 +44,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: "30px",
     letterSpacing: 0.3,
+    "@media (max-width: 768px)": { marginLeft: 36 },
+    "@media (max-width: 468px)": { fontSize: 20 },
+  },
+  iconStyles: {
+    cursor: "pointer",
+    marginLeft: 25,
+    "@media (max-width: 768px)": { marginLeft: 12 },
   },
 });
 
@@ -63,7 +72,7 @@ function HeaderComponent(props) {
           <IconBellNew />
         </div>
         <div className={css(styles.separator)}></div>
-        {/* <Row vertical="center">
+        <Row vertical="center">
           <span className={css(styles.name, styles.cursorPointer)}>
             Germán Llorente
           </span>
@@ -72,7 +81,7 @@ function HeaderComponent(props) {
             alt="avatar"
             className={css(styles.avatar, styles.cursorPointer)}
           />
-        </Row> */}
+        </Row>
       </Row>
     </Row>
   );

@@ -3,6 +3,7 @@ import { Column, Row } from "simple-flexbox";
 import { StyleSheet, css } from "aphrodite";
 import SidebarComponent from "./components/sidebar/SidebarComponent";
 import HeaderComponent from "./components/header/HeaderComponent";
+import Service from "./components/content/sevice";
 import "./App.css";
 
 const styles = StyleSheet.create({
@@ -19,7 +20,17 @@ const styles = StyleSheet.create({
 });
 
 class App extends React.Component {
-  state = { selectedItem: "Overview" };
+  state = { selectedItem: "Object Detection" };
+
+  componentDidMount() {
+    window.addEventListener("resize", this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resize);
+  }
+
+  resize = () => this.forceUpdate();
 
   render() {
     const { selectedItem } = this.state;
@@ -32,7 +43,7 @@ class App extends React.Component {
         <Column flexGrow={1} className={css(styles.mainBlock)}>
           <HeaderComponent title={selectedItem} />
           <div className={css(styles.content)}>
-            <span>Content</span>
+            <Service title={selectedItem} />
           </div>
         </Column>
       </Row>
