@@ -1,6 +1,6 @@
 import React from "react";
 
-function objectDetection() {
+function ObjectDetection() {
   return (
     <div>
       <h1>object detection</h1>
@@ -8,4 +8,4 @@ function objectDetection() {
   );
 }
 
-export default objectDetection;
+export default ObjectDetection;
